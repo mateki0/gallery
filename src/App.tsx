@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Body from './Components/Body/Body'
+import styled from 'styled-components';
+const CreditDiv = styled.div`
+    position:absolute;
+    top:120px;
+    left:20px;
+`
+const UnsplashCredit = styled.a`
+    color:#fff;
+    font-size:16px;
+    writing-mode:vertical-rl;
+    &:hover{
+      color:#e5e5e5;
+    }
+    transition:color .5s;
 
+`
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CreditDiv>
+        <UnsplashCredit href="http://unsplash.com">See more on Unsplash official site</UnsplashCredit>
+      </CreditDiv>
+      <Body/>
     </div>
   );
 }
