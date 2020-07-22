@@ -1,17 +1,18 @@
-import React from "react"
+import React,{useState} from "react"
 import styled from 'styled-components'
 import {Search } from '@styled-icons/boxicons-regular'
-
+import device from '../MediaQuerySizes'
 const SearchDiv = styled.div`
   box-sizing:border-box;
   display:flex;
   justify-content:center;
-  margin:15px 0 50px 0;
+  
+  margin:15px 30px 50px 0;
 `
 
 const SearchInput = styled.input`
+  
   border-radius:30px;
-  padding:10px 80px;
   outline:none;
   font-size:20px;
   font-weight:600;
@@ -27,6 +28,16 @@ const SearchInput = styled.input`
     opacity:0.3;
     font-weight:600;
   }
+
+  @media ${device.mobileS}{
+    padding:10px 10px;
+  }
+  @media ${device.tablet} {
+    padding:10px 50px;
+  }
+  @media ${device.laptop} {
+    padding:10px 80px
+  }
 `
 const SearchButton = styled(Search)`
   position:relative;
@@ -39,12 +50,28 @@ const SearchButton = styled(Search)`
   }
 `
 
-const Header = () => {
+const Header = ({...props}) => {
+  const [query, setQuery] = useState<string>('');
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.currentTarget.value)
+  }
+
+  const setQueried = () => {
+    
+    props.setFetchUrl(`https://api.unsplash.com/search/photos?per_page=30&page=1&query=${query}`);
+    props.setIsQuery(true);
+    props.setPage(1);
+  }
+  const enterSearch = (e: { key: string }) => {
+    if(e.key === 'Enter'){
+      setQueried();
+    }
+  }
+  
   return(
-    <SearchDiv>
-      <SearchButton />
-      <SearchInput placeholder="Search photo"/>
-      
+    <SearchDiv >
+      <SearchButton onClick={setQueried}/>
+      <SearchInput onChange={(e)=>handleInput(e)} onKeyPress={enterSearch} placeholder="Search photo"/>
     </SearchDiv>
   )
 }

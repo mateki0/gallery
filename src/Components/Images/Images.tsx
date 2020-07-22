@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 import ModalComponent from '../Modal/ModalComponent';
 import ModalHeader from "../Modal/ModalHeader";
-import InfiniteScroll from 'react-infinite-scroll-component';
-import axios from 'axios';
+import device from '../MediaQuerySizes'
 
 const GalleryDiv = styled.div`
     margin:0 auto;
@@ -12,6 +11,16 @@ const GalleryDiv = styled.div`
     grid-template-columns:1fr 1fr 1fr;
     column-gap:10px;
     grid-gap:10px;
+    padding-bottom:20px;
+    
+    @media ${device.mobileS}{
+        column-gap:5px;
+        grid-gap:5px;
+    }
+    @media ${device.tablet}{
+        column-gap:10px;
+        grid-gap:10px
+    }
 `
 const AuthorDiv = styled.div`
 display:none;
@@ -24,7 +33,6 @@ const StyledImg = styled.img`
     filter: brightness(100%);
     object-fit: cover;
     width:100%;
-    height:200px;
     display:inline-block;
     margin:5px 0;
     transition:filter .5s;
@@ -32,7 +40,21 @@ const StyledImg = styled.img`
         cursor:zoom-in;
         filter: brightness(75%);
     }
-    
+    @media ${device.mobileS}{
+        height:100px;
+    }
+    @media ${device.mobileL}{
+        height:120px;
+    }
+    @media ${device.tablet}{
+        height:150px;
+    }
+    @media ${device.laptop}{
+        height:220px
+    }
+    @media ${device.desktop}{
+        height:250px;
+    }
 `
 const ImgDiv = styled.div`
     height:200px;
@@ -41,7 +63,21 @@ const ImgDiv = styled.div`
     &:hover ${AuthorDiv}{
         display:block;
     }
-    
+    @media ${device.mobileS}{
+        height:100px;
+    }
+    @media ${device.mobileL}{
+        height:120px;
+    }
+    @media ${device.tablet}{
+        height:150px;
+    }
+    @media ${device.laptop}{
+        height:220px
+    }
+    @media ${device.desktop}{
+        height:250px;
+    }
 `
 
 const Author = styled.span`
@@ -75,42 +111,14 @@ interface ISrc{
     insta?:string,
     profileLink?:string,
 }
-const Images = () => {
+const Images = ({...props}) => {
     const [show,setShow] = useState(false);
     const [zoomed, setZoomed] = useState(false)
     const [modalSrc, setModalSrc] = useState<ISrc>({});
     
-    const [data, setData] = useState <Array<any>>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [fetchUrl, setFetchUrl] = useState<string>('https://api.unsplash.com/photos?per_page=30&page=1');
-    const [hasMore, setHasMore] = useState(true);
-    const [page,setPage] = useState<number>(1);
-    useEffect(()=>{
-        Modal.setAppElement('body')
-        const fetchData = async(url:string)=>{
-        try{
-            const response = await axios({
-            method:'GET',
-            url:url,
-            headers:{
-                "Accept-version": 'v1',
-                "Authorization":`Client-ID ${process.env.REACT_APP_API_KEY}`,
-            }});
-            if(page === 1){
-                setData(response.data);
-            } else {
-                setData(data.concat(response.data))
-                
-            }
-            setIsLoading(false);
-        }catch(error){
-            console.log(error)
-        }
-        }
-        fetchData(fetchUrl);
-    },[fetchUrl, page])
-   
+    
     useEffect(() =>{
+        Modal.setAppElement('body')
         setShow(false)
     },[])
     const handleClose = () => {
@@ -125,27 +133,11 @@ const Images = () => {
     const zoomIn = () => {
         setZoomed(zoomed ? false : true);
     }
-    const incrementPage = () => {
-        setPage(page+1)
-    }
-    const fetchMoreData = () => {
-        incrementPage();
-        setFetchUrl(`https://api.unsplash.com/photos?per_page=30&page=${page+1}`)
-        
-        if(data.length/page+1 < 30){
-            setHasMore(false)
-        }
-        }
+    
     
     return(
-    <InfiniteScroll
-        dataLength={data.length}
-        next={fetchMoreData}
-        hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        >
         <GalleryDiv >
-            {data.map((photo:{
+            {props.data.map((photo:{
                 id:string,
                 user:{
                     name:string,
@@ -207,7 +199,7 @@ const Images = () => {
             
         </StyledModal>
      </GalleryDiv>
-     </InfiniteScroll>
+     
     )
 }
 

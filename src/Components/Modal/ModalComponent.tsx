@@ -2,6 +2,7 @@ import React from 'react';
 import styled, {css} from 'styled-components';
 import {ResizeFullScreen} from '@styled-icons/entypo';
 import OtherUserImgs from './OtherUserImgs';
+import device from '../MediaQuerySizes';
 const ModalDiv = styled.div`
     margin:0 auto;
     display:flex;
@@ -28,7 +29,34 @@ ${(props:{zoomed:boolean; wid:number}) => props.zoomed && css`
     width:${props.wid}px;
     max-width:100%;
     cursor:zoom-out;
+    
 `}
+
+@media ${device.mobileS}{
+    height:20vh;
+    ${(props:{zoomed:boolean; wid:number}) => props.zoomed && css`
+        height:auto;
+    `}
+}
+@media ${device.tablet}{
+    height:30vh;
+    ${(props:{zoomed:boolean; wid:number}) => props.zoomed && css`
+        height:auto;
+    `}
+}
+@media ${device.laptopL}{
+    height:60vh;
+    ${(props:{zoomed:boolean; wid:number}) => props.zoomed && css`
+        height:auto;
+    `}
+    
+}
+@media ${device.desktop}{
+    height:80vh
+    ${(props:{zoomed:boolean; wid:number}) => props.zoomed && css`
+        height:auto;
+    `}
+}
 `
 const ModalImgDiv = styled.div`
     margin: 20px auto ;    
@@ -37,10 +65,23 @@ const ModalImgDiv = styled.div`
         opacity:1;
     }
     position:relative;
+
 `
-const OtherTitle = styled.h2`
+const OtherTitle = styled.span`
+font-size: 24px;
+text-align:center;
+font-weight:600;
     margin:20px auto 40px auto ;
     color:#fff;
+    @media ${device.mobileS}{
+        font-size:14px;
+    }
+    @media ${device.tablet}{
+        font-size:18px
+    }
+    @media ${device.laptop}{
+        font-size:24px;
+    }
 `
 const ModalComponent = ({...props}) => {
     

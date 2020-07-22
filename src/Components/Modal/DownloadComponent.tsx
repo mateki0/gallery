@@ -102,19 +102,27 @@ interface IUrl{
 const DownloadComponent = ({...props}) =>{
     const [isOpen, setIsOpen] = useState(false);
     const [downloadUrl, setDownloadUrl] = useState<IUrl>({url:''});
-    const smallImg = useRef<HTMLBodyElement>(null!);
-    const openDropdown = () => setIsOpen(!isOpen ? true : false);
+    const openChev = useRef<SVGSVGElement>(null!);
+    const handleClickOutside = (e: { target: any; currentTarget:any }) => {
+        setIsOpen(false);
+        
+    }
+        useEffect(() => {
+            const openDropdown = (e:{target:any}) => {
+                if(openChev && openChev.current.contains(e.target));
+            };
+        })
     
     useEffect(() => {
-        const handleClickOutside = (e: { target: any; }) => {
-            setIsOpen(false);
-        }
+        
         document.addEventListener('mousedown', handleClickOutside);
 
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    },);
+    },[]);
+    
+    
 
     // useEffect(()=>{
     //     const handleDownload = async(url:string) => {
@@ -168,7 +176,7 @@ const DownloadComponent = ({...props}) =>{
         <Download >
             <ButtonDiv>
                 <OpenDrop>Download</OpenDrop>
-                <StyledChevron onClick={openDropdown} isOpen={isOpen}/>
+                <StyledChevron onClick={() => openDropdown()} isOpen={isOpen} ref={openChev}/>
             </ButtonDiv>
             <DownloadDropdown isOpen={isOpen} >
                 <DropA >

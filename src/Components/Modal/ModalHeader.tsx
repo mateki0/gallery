@@ -10,7 +10,7 @@ const Header = styled.div`
 `
 
 const ModalHeader = ({...props}) => {
-    console.log(props.modalSrc)
+    
     return(
         <Header>
             <Author modalSrc={props.modalSrc} />

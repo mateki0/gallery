@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
-
+import device from '../MediaQuerySizes'
 const GalleryDiv = styled.div`
     margin:0 auto;
     display:grid;
@@ -9,13 +9,20 @@ const GalleryDiv = styled.div`
     column-gap:10px;
     grid-gap:10px;
     
+    @media ${device.mobileS}{
+        column-gap:5px;
+        grid-gap:5px;
+    }
+    @media ${device.tablet}{
+        column-gap:10px;
+        grid-gap:10px;
+    }
 `
 const StyledImg = styled.img`
     box-sizing:border-box;
     filter: brightness(100%);
     object-fit: cover;
     width:100%;
-    height:200px;
     display:inline-block;
     margin:5px 0;
     transition:filter .5s;
@@ -24,6 +31,22 @@ const StyledImg = styled.img`
         filter: brightness(75%);
     }
     
+    @media ${device.mobileS}{
+        height:80px;
+    }
+    @media ${device.mobileL}{
+        height:100px;
+    }
+
+    @media ${device.tablet}{
+        height:120px;
+    }
+    @media ${device.laptop}{
+        height:180px
+    }
+    @media ${device.desktop}{
+        height:200px;
+    }
 `
 const ImgDiv = styled.div`
     position:relative;
@@ -42,14 +65,39 @@ const LinkToProfile = styled.a`
     }
 
     transition:color .5s;
+    @media ${device.mobileS}{
+        font-size:14px;
+
+    }
+    @media ${device.tablet}{
+        font-size:16px;
+    }
+    @media ${device.laptop}{
+        font-size:20px;
+    }
+    @media ${device.desktop}{
+        font-size:22px;
+    }
 `
 const NoPhotos = styled.div`
     margin:0 auto;
     text-align:center;
 `
 const NoPermissions = styled.span`
-    font-size:22px;
     color:#fff;
+    @media ${device.mobileS}{
+        font-size:14px;
+
+    }
+    @media ${device.tablet}{
+        font-size:16px;
+    }
+    @media ${device.laptop}{
+        font-size:18px;
+    }
+    @media ${device.desktop}{
+        font-size:22px;
+    }
 `
 const OtherUserImgs = ({...props}) => {
     const [data, setData] = useState<Array<any>>([]);
@@ -66,7 +114,7 @@ const OtherUserImgs = ({...props}) => {
                     "Accept-version": 'v1',
                     "Authorization":`Client-ID ${process.env.REACT_APP_API_KEY}`,
                 }});
-                console.log(response.data)
+                
                 setData(response.data);
                 setIsLoading(false)
             }catch(error){
@@ -82,7 +130,7 @@ const OtherUserImgs = ({...props}) => {
         <GalleryDiv>
             {data.map((photo:{urls:{small:string, full:string}},index:number) => (           
             <ImgDiv key={index}>
-                <a href={photo.urls.full} target="_blank">
+                <a href={photo.urls.full} target="_blank" rel='noopener noreferrer'>
                     <StyledImg src={photo.urls.small} />
                 </a>
             </ImgDiv>
@@ -109,5 +157,4 @@ const OtherUserImgs = ({...props}) => {
 
 export default OtherUserImgs;
 
-// fetch other images from specific user
-// load more imgs when scrolling
+/// search function !!!

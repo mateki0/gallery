@@ -21,7 +21,7 @@ const NameDiv = styled.div`
 const AuthorName = styled.a`
     color:#fff;
     font-weight:600;
-    font-size:16px;
+    font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1600 - 300)));
     text-decoration:none;
     &:hover{
         color:#e6e6e6;
@@ -30,7 +30,7 @@ const AuthorName = styled.a`
 const Insta = styled.a`
     text-decoration:none;
     color:#fff;
-    font-size:12px;
+    font-size: calc(8px + (16 - 12) * ((100vw - 300px) / (1600 - 300)));
     transition: color .3s;
 
     &:hover{
@@ -38,7 +38,7 @@ const Insta = styled.a`
     }
 `
 const Author = ({...props}) => {
-    console.log(props.modalSrc.profileLink.slice(12))
+    
     return(
         <AuthorDiv>
             <AvatarDiv>
