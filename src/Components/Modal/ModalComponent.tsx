@@ -19,11 +19,10 @@ const Resize = styled(ResizeFullScreen)`
     transition:opacity .5s;
 `
 const ModalImg = styled.img`
-vertical-align:middle;
-width:auto;
-
-cursor:zoom-in;
-height:80vh;
+    vertical-align:middle;
+    width:auto;
+    cursor:zoom-in;
+    height:80vh;
 ${(props:{zoomed:boolean; wid:number}) => props.zoomed && css`
     height:auto;
     width:${props.wid}px;
@@ -68,9 +67,9 @@ const ModalImgDiv = styled.div`
 
 `
 const OtherTitle = styled.span`
-font-size: 24px;
-text-align:center;
-font-weight:600;
+    font-size: 24px;
+    text-align:center;
+    font-weight:600;
     margin:20px auto 40px auto ;
     color:#fff;
     @media ${device.mobileS}{
@@ -85,10 +84,8 @@ font-weight:600;
 `
 const UnsplashLink = styled.a`
     color:#fff;
-
 `
 const ModalComponent = ({...props}) => {
-    
     return(
         <ModalDiv >
             <ModalImgDiv onClick={props.zoomIn} >
@@ -98,7 +95,6 @@ const ModalComponent = ({...props}) => {
             <OtherTitle>Other Pictures Made By This Author available on <UnsplashLink href="https://unsplash.com/?utm_source=myown-gallery&utm_medium=referral">Unsplash:</UnsplashLink></OtherTitle>
             <OtherUserImgs author={props.modalSrc.profileLink}/>
         </ModalDiv>
-        
     )
 }
 

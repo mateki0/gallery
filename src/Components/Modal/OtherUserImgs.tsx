@@ -80,7 +80,7 @@ const LinkToProfile = styled.a`
     }
 `
 const NoPhotos = styled.div`
-    margin:0 auto;
+    margin:20px auto 0 auto;
     text-align:center;
 `
 const NoPermissions = styled.span`
@@ -103,24 +103,22 @@ const OtherUserImgs = ({...props}) => {
     const [data, setData] = useState<Array<any>>([]);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(()=>{
-        
-        
         const fetchData = async(url:string)=>{
             try{
-              const response = await axios({
-                method:'GET',
-                url:url,
-                headers:{
-                    "Accept-version": 'v1',
-                    "Authorization":`Client-ID ${process.env.REACT_APP_API_KEY}`,
-                }});
-                
-                setData(response.data);
-                setIsLoading(false)
+                const response = await axios({
+                    method:'GET',
+                    url:url,
+                    headers:{
+                        "Accept-version": 'v1',
+                        "Authorization":`Client-ID ${process.env.REACT_APP_API_KEY}`,
+                    }});
+                    
+                    setData(response.data);
+                    setIsLoading(false)
             }catch(error){
-              console.log(error)
+                console.log(error)
             }
-          }
+        }
             fetchData(props.author +'/photos?per_page=21');
     },[props.author])
     
@@ -135,18 +133,17 @@ const OtherUserImgs = ({...props}) => {
                 </a>
             </ImgDiv>
         ))}
-        
         </GalleryDiv>
         <NoPhotos>
             <LinkToProfile href={`http://${props.author.slice(12).replace("users/", "@")}?utm_source=myown-gallery&utm_medium=referral`}>See all photos by this author on official unsplash site.</LinkToProfile>
         </NoPhotos>
         </>
-    )
+        )
             }
     if(isLoading && data.length === 0){
         return(
             <NoPhotos>
-               <NoPermissions>We don't have user permission to display more pictures.</NoPermissions>  <br/> <LinkToProfile href={`https://instagram.com/${props.author.slice(31)}`} >Check more photos on instagram profile </LinkToProfile> 
+                <NoPermissions>We don't have user permission to display more pictures.</NoPermissions>  <br/> <LinkToProfile href={`https://instagram.com/${props.author.slice(31)}`} >Check more photos on instagram profile </LinkToProfile> 
             </NoPhotos>
         )
     }
@@ -154,7 +151,4 @@ const OtherUserImgs = ({...props}) => {
         <div>Loading...</div>
     )
 }
-
 export default OtherUserImgs;
-
-/// search function !!!

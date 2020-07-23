@@ -6,12 +6,10 @@ const SearchDiv = styled.div`
   box-sizing:border-box;
   display:flex;
   justify-content:center;
-  
   margin:15px 30px 50px 0;
 `
 
 const SearchInput = styled.input`
-  
   border-radius:30px;
   outline:none;
   font-size:20px;
@@ -22,7 +20,6 @@ const SearchInput = styled.input`
   color:#000;
     box-shadow: 0 0 25px 0 #efefef,
                 0 20px 25px 0 rgba(0, 0, 0, 0.2);
-  
   &::placeholder{
     color:#000;
     opacity:0.3;
@@ -57,7 +54,6 @@ const Header = ({...props}) => {
   }
 
   const setQueried = () => {
-    
     props.setFetchUrl(`https://api.unsplash.com/search/photos?per_page=30&page=1&query=${query}`);
     props.setIsQuery(true);
     props.setPage(1);
@@ -67,7 +63,6 @@ const Header = ({...props}) => {
       setQueried();
     }
   }
-  
   return(
     <SearchDiv >
       <SearchButton onClick={setQueried}/>

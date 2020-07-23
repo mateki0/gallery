@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useRef} from "react";
+import React,{useState, useEffect} from "react";
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import ModalComponent from '../Modal/ModalComponent';
@@ -23,10 +23,10 @@ const GalleryDiv = styled.div`
     }
 `
 const AuthorDiv = styled.div`
-display:none;
-position:absolute;
-bottom:15px;
-left:16px;
+    display:none;
+    position:absolute;
+    bottom:15px;
+    left:16px;
 `
 const StyledImg = styled.img`
     box-sizing:border-box;
@@ -79,14 +79,11 @@ const ImgDiv = styled.div`
         height:250px;
     }
 `
-
 const Author = styled.span`
-font-size:18px;
-font-weight:600;
+    font-size:18px;
+    font-weight:600;
     color:#fff
 `
-
-
 const StyledModal= styled(Modal)`
     margin:20px auto;
     display:flex;
@@ -98,7 +95,6 @@ const StyledModal= styled(Modal)`
     max-height:90vh;
     overflow-y:auto;
 `
-
 interface ISrc{
     regular?:string, 
     width?:number, 
@@ -115,8 +111,6 @@ const Images = ({...props}) => {
     const [show,setShow] = useState(false);
     const [zoomed, setZoomed] = useState(false)
     const [modalSrc, setModalSrc] = useState<ISrc>({});
-    
-    
     useEffect(() =>{
         Modal.setAppElement('body')
         setShow(false)
@@ -129,12 +123,9 @@ const Images = ({...props}) => {
         setModalSrc(data)
         setShow(true)
     };
-        
     const zoomIn = () => {
         setZoomed(zoomed ? false : true);
     }
-    
-    
     return(
         <GalleryDiv >
             {props.data.map((photo:{
@@ -162,7 +153,6 @@ const Images = ({...props}) => {
                 description: string | undefined,
                 alt_description:  string | undefined,
             },index:number)=>(
-                    
                         <ImgDiv onClick={()=>handleShow(
                             {
                                 regular:photo.urls.regular, 
@@ -178,28 +168,21 @@ const Images = ({...props}) => {
                                 
                             })} 
                             key={index}>
-                            
                             <StyledImg src={photo.urls.small}/>
                             <AuthorDiv>
                             <Author>{photo.user.name}</Author>
                             </AuthorDiv>
                         </ImgDiv>
-                        
-                    
             ))}
-        
         <StyledModal 
             isOpen={show} 
             onRequestClose={handleClose}
             contentLabel="Example modal"
-            
         >   
             <ModalHeader modalSrc={modalSrc}/>
             <ModalComponent zoomed={zoomed} modalSrc={modalSrc} zoomIn={zoomIn}/>
-            
         </StyledModal>
-     </GalleryDiv>
-     
+    </GalleryDiv>
     )
 }
 
