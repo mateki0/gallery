@@ -138,7 +138,7 @@ const OtherUserImgs = ({...props}) => {
         
         </GalleryDiv>
         <NoPhotos>
-            <LinkToProfile href={`http://${props.author.slice(12).replace("users/", "@")}`}>See all photos by this author on official unsplash site.</LinkToProfile>
+            <LinkToProfile href={`http://${props.author.slice(12).replace("users/", "@")}?utm_source=myown-gallery&utm_medium=referral`}>See all photos by this author on official unsplash site.</LinkToProfile>
         </NoPhotos>
         </>
     )

@@ -83,8 +83,8 @@ const StyledChevron = styled(ChevronDown)<{isOpen:boolean}>`
     };
     width:22px;
     color:${({isOpen}) =>
-    (isOpen === true && '#e6e6e6') ||
-    (isOpen === false && '#e6e6e6')
+        (isOpen === true && '#e6e6e6') ||
+        (isOpen === false && '#e6e6e6')
     };
     padding:0 6px;
     background:#573A03;
@@ -104,14 +104,15 @@ const DownloadComponent = ({...props}) =>{
     const [downloadUrl, setDownloadUrl] = useState<IUrl>({url:''});
     const openChev = useRef<SVGSVGElement>(null!);
     const handleClickOutside = (e: { target: any; currentTarget:any }) => {
-        setIsOpen(false);
-        
+        if(openChev && openChev.current.contains(e.target)) return;
+            setIsOpen(false)
     }
-        useEffect(() => {
-            const openDropdown = (e:{target:any}) => {
-                if(openChev && openChev.current.contains(e.target));
-            };
-        })
+        
+    const openDropdown = () => {
+        console.log('works')
+        setIsOpen(isOpen ? false : true)
+    };
+        
     
     useEffect(() => {
         
@@ -186,7 +187,6 @@ const DownloadComponent = ({...props}) =>{
                     <Size>
                         (640 Width)
                     </Size>
-                    
                 </DropA>
                 <DropA>
                     <SizeName>

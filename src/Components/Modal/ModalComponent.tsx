@@ -83,16 +83,19 @@ font-weight:600;
         font-size:24px;
     }
 `
+const UnsplashLink = styled.a`
+    color:#fff;
+
+`
 const ModalComponent = ({...props}) => {
     
     return(
         <ModalDiv >
-            
             <ModalImgDiv onClick={props.zoomIn} >
                 <ModalImg zoomed={props.zoomed} src={props.modalSrc.regular} wid={props.modalSrc.width} />
                 <Resize/>
             </ModalImgDiv>
-            <OtherTitle>Other Pictures Made By This Author available on Unsplash</OtherTitle>
+            <OtherTitle>Other Pictures Made By This Author available on <UnsplashLink href="https://unsplash.com/?utm_source=myown-gallery&utm_medium=referral">Unsplash:</UnsplashLink></OtherTitle>
             <OtherUserImgs author={props.modalSrc.profileLink}/>
         </ModalDiv>
         

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure';
 ReactDOM.render(
   <React.StrictMode>
     <App />
