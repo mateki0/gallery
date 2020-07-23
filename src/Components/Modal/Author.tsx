@@ -48,8 +48,6 @@ const Insta = styled.a<InstaProps>`
     }}
 `
 const Author = ({...props}) => {
-    console.log(props.modalSrc.profileLink.slice(31))
-    console.log(props.modalSrc)
     return(
         <AuthorDiv>
             <AvatarDiv>
@@ -57,7 +55,6 @@ const Author = ({...props}) => {
                 <NameDiv>
                     <AuthorName href={`http://${props.modalSrc.profileLink.slice(12).replace("users/", "@")}?utm_source=myown-gallery&utm_medium=referral`} target="_blank">{props.modalSrc.name}</AuthorName>
                     <Insta insta={props.modalSrc.insta} href={`https://instagram.com/${props.modalSrc.profileLink.slice(31)}`} target="_blank">@{props.modalSrc.insta}</Insta>
-                
                 </NameDiv>
             </AvatarDiv>
         </AuthorDiv>
