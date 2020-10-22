@@ -1,9 +1,9 @@
 import React from 'react';
-import Body from './Components/Body'
+import Body from './Components/Body';
 function App() {
   return (
     <div>
-      <Body/>
+      <Body />
     </div>
   );
 }

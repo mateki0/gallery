@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
 const AuthorWrapper = styled.div`
-    display:flex;
-`
+  display: flex;
+`;
 export default AuthorWrapper;
