@@ -1,0 +1,25 @@
+{
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          { "ssr": true, "displayName": true, "preprocess": false }
+        ]
+      ],
+      "presets": ["babel-preset-gatsby"]
+    },
+    "production": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          { "ssr": true, "displayName": true, "preprocess": false }
+        ]
+      ],
+      "presets": ["babel-preset-gatsby"]
+    }
+  },
+  "plugins": [
+    ["babel-plugin-styled-components", { "ssr": true, "displayName": true, "preprocess": false }]
+  ]
+}
