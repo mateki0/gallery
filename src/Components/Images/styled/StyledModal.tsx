@@ -7,7 +7,7 @@ const StyledModal = styled(Modal)`
   flex-direction: column;
   width: 80vw;
   padding: 0 20px 20px 20px;
-  background-color: #ddaa4b;
+  background-color: #383838;
   outline: none;
   max-height: 90vh;
   overflow-y: auto;

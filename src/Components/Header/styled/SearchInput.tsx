@@ -9,7 +9,7 @@ const SearchInput = styled.input`
   text-align: center;
   border: none;
   color: #000;
-  box-shadow: 0 0 25px 0 #efefef, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(172, 170, 170, 0.9);
   &::placeholder {
     color: #000;
     opacity: 0.3;

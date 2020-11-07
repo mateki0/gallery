@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     top:0;
     margin:0;
     height:100%;
-    background:#D68F09;
+    background:#383838;
     font-family: 'Inconsolata', monospace;
   #root{
     height:100%;
